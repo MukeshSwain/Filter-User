@@ -1,0 +1,244 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@layer base {
+  body {
+    @apply bg-white font-['Inter'] antialiased text-gray-900;
+  }
+
+  /* Custom selection color */
+  ::selection {
+    @apply bg-gray-900/10 text-gray-900;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply px-4 py-2.5 rounded-xl font-medium transition-all duration-200 
+           focus:outline-none focus:ring-2 focus:ring-offset-2 
+           disabled:opacity-50 disabled:cursor-not-allowed
+           active:scale-95 select-none;
+  }
+
+  .btn-primary {
+    @apply btn bg-gray-900 text-white 
+           hover:bg-gray-800
+           focus:ring-gray-900 shadow-sm hover:shadow-md;
+  }
+
+  .btn-secondary {
+    @apply btn bg-white text-gray-900 border border-gray-200
+           hover:bg-gray-50 hover:border-gray-300 
+           focus:ring-gray-900 shadow-sm hover:shadow-md;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl shadow-sm border border-gray-200
+           transition-all duration-200 backdrop-blur-xl
+           hover:shadow-lg hover:border-gray-300;
+  }
+
+  .input {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 
+           focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent 
+           transition-all duration-200 bg-white shadow-sm
+           placeholder:text-gray-400 hover:border-gray-300
+           text-gray-900;
+  }
+
+  .checkbox-label {
+    @apply flex items-center space-x-3 text-gray-900 cursor-pointer select-none
+           py-2 px-3 rounded-lg hover:bg-gray-50 transition-colors
+           active:bg-gray-100;
+  }
+
+  .checkbox {
+    @apply w-5 h-5 text-gray-900 border-2 border-gray-300 rounded-lg
+           focus:ring-2 focus:ring-gray-900 focus:ring-offset-0
+           transition-all duration-200 cursor-pointer
+           hover:border-gray-400;
+  }
+
+  /* Glass effect for cards */
+  .glass-card {
+    @apply bg-white bg-opacity-90 backdrop-blur-lg
+           border border-gray-200 border-opacity-60
+           hover:bg-opacity-100 transition-all duration-300;
+  }
+
+  /* Modern loading animation */
+  .loading-dots {
+    @apply flex space-x-1.5 items-center justify-center;
+  }
+
+  .loading-dots > div {
+    @apply w-2.5 h-2.5 bg-gray-900 rounded-full;
+    animation: bounce 0.5s infinite;
+  }
+
+  .loading-dots > div:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+
+  .loading-dots > div:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+
+  /* Shimmer loading effect */
+  .shimmer {
+    @apply relative overflow-hidden bg-gray-50;
+  }
+
+  .shimmer::after {
+    @apply absolute inset-0;
+    content: '';
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      transparent 100%
+    );
+    animation: shimmer 1.5s infinite;
+  }
+}
+
+/* Custom animations */
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUpAndFade 0.3s ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.2s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full hover:bg-gray-400 transition-colors;
+}
+
+/* Glassmorphism effects */
+.glass-effect {
+  @apply bg-white bg-opacity-90 backdrop-blur-lg 
+         border border-gray-200 border-opacity-60
+         shadow-lg hover:bg-opacity-95 transition-all duration-300;
+}
+
+.glass-effect-dark {
+  @apply bg-gray-900 bg-opacity-90 backdrop-blur-lg 
+         border border-gray-800 border-opacity-60
+         shadow-lg hover:bg-opacity-95 transition-all duration-300;
+}
+
+/* Pill badge */
+.badge {
+  @apply px-2.5 py-0.5 rounded-full text-xs font-medium 
+         bg-gray-100 text-gray-900
+         border border-gray-200
+         hover:bg-gray-200 transition-colors;
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply animate-pulse bg-gray-100 rounded-lg;
+}
+
+/* Modern card hover effect */
+.hover-card {
+  @apply transition-all duration-300 cursor-pointer
+         hover:shadow-xl hover:-translate-y-1
+         active:shadow-lg active:translate-y-0;
+}
+
+/* Tooltip */
+.tooltip {
+  @apply relative inline-block;
+}
+
+.tooltip::before {
+  @apply content-[attr(data-tip)] absolute px-2 py-1 
+         -top-2 left-1/2 -translate-x-1/2 -translate-y-full
+         whitespace-nowrap rounded bg-gray-900 text-white text-xs
+         opacity-0 transition-opacity duration-200;
+}
+
+.tooltip:hover::before {
+  @apply opacity-100;
+}
+
+/* Focus ring */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2;
+}
+
+/* Divider */
+.divider {
+  @apply h-px w-full bg-gradient-to-r from-transparent via-gray-200 to-transparent;
+}
+
+/* Status indicators */
+.status-dot {
+  @apply w-2.5 h-2.5 rounded-full;
+}
+
+.status-dot.online {
+  @apply bg-green-500;
+}
+
+.status-dot.offline {
+  @apply bg-gray-400;
+}
+
+.status-dot.busy {
+  @apply bg-red-500;
+}
